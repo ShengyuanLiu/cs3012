@@ -9,6 +9,7 @@ class Node
     int key;
     Node left, right, parent;
 
+
     Node(int key)
     {
         this.key = key;
@@ -16,7 +17,7 @@ class Node
     }
 }
 
-class BinaryTree {
+public class LCA {
     Node root, n1, n2, lca;
 
     Node insert(Node node, int key) {
@@ -78,7 +79,7 @@ class BinaryTree {
     
     public static void main(String[] args)
     {
-        BinaryTree tree = new BinaryTree();
+        LCA tree = new LCA();
         tree.root = tree.insert(tree.root, 20);
         tree.root = tree.insert(tree.root, 8);
         tree.root = tree.insert(tree.root, 22);
