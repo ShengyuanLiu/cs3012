@@ -21,7 +21,9 @@ public class LCATest {
 	}
 	@Test
 	public void testEmpty() {
-	        
+		LCA tree = new LCA();
+		tree.root =null;
+		
 	}
 
 }
