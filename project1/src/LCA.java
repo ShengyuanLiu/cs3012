@@ -1,99 +1,101 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList; 
+import java.util.List; 
+  
+// A Binary Tree node 
+class Node 
+{ 
+    int data; 
+    Node left, right; 
+  
+    Node(int value) 
+    { 
+        data = value; 
+        left = right = null; 
+    } 
+} 
+// Lowest Common Ancestor  
+public class LCA  
+{ 
+  
+    Node root; 
+    private List<Integer> path1 = new ArrayList<>(); 
+    private List<Integer> path2 = new ArrayList<>(); 
+  
+    // Finds the path from root node to given root of the tree. 
+    int getTheLCA(int node1, int node2) 
+    { 
+        path1.clear(); 
+        path2.clear(); 
+        return searchLCAInternal(root, node1, node2); 
+    } 
+  
+    private int searchLCAInternal(Node root, int node1, int node2) 
+    { 
+  
+        if (!getPath(root, node1, path1) || !getPath(root, node2, path2)) 
+        { 
+            System.out.println((path1.size() > 0) ? "node1 is present" : "node1 is missing"); 
+            System.out.println((path2.size() > 0) ? "node2 is present" : "node2 is missing"); 
+            return -1; 
+        } 
+  
+        int i; 
+        for (i = 0; i < path1.size() && i < path2.size(); i++) 
+        {       
+        // System.out.println(path1.get(i) + " " + path2.get(i)); 
+            if (!path1.get(i).equals(path2.get(i))) 
+                break; 
+        } 
+  
+        return path1.get(i-1); 
+    } 
+      
+    // Finds the path from root node to given root of the tree, Stores the 
+    // path in a vector path[], returns true if path exists otherwise false 
+    private boolean getPath(Node root, int n, List<Integer> path) 
+    { 
+        // base case 
+        if (root == null) 
+            return false; 
+         
+          
+        // Store this node . The node will be removed if 
+        // not in path from root to n. 
+        path.add(root.data); 
+  
+        if (root.data == n)  
+            return true;  
+  
+        if (root.left != null && getPath(root.left, n, path)) 
+            return true; 
+  
+        if (root.right != null && getPath(root.right, n, path)) 
+            return true;          
+  
+        // If not present in subtree rooted with root, remove root from 
+        // path[] and return false 
+        path.remove(path.size()-1); 
+  
+        return false; 
+    } 
 
-// Java program to find lowest common ancestor using parent pointer
-
-// A tree node
-class Node
-{
-    int key;
-    Node left, right, parent;
-
-
-    Node(int key)
-    {
-        this.key = key;
-        left = right = parent = null;
-    }
-}
-
-public class LCA {
-    Node root, n1, n2, lca;
-
-    Node insert(Node node, int key) {
-        /* If the tree is empty, return a new node */
-        if (node == null)
-            return new Node(key);
-
-        /* Otherwise, recur down the tree */
-        if (key < node.key) {
-            node.left = insert(node.left, key);
-            node.left.parent = node;
-        } else if (key > node.key) {
-            node.right = insert(node.right, key);
-            node.right.parent = node;
-        }
-
-        /* return the (unchanged) node pointer */
-        return node;
-    }
-
-
-    int depth(Node node) {
-        int d = -1;
-        while (node != null) {
-            ++d;
-            node = node.parent;
-        }
-        return d;
-    }
-
-    // To find LCA of nodes n1 and n2 in Binary Tree
-    Node LCA(Node n1, Node n2) {
-        // Find depths of two nodes and differences
-        int d1 = depth(n1), d2 = depth(n2);
-        int diff = d1 - d2;
-
-        // If n2 is deeper, swap n1 and n2
-        if (diff < 0) {
-            Node temp = n1;
-            n1 = n2;
-            n2 = temp;
-            diff = -diff;
-        }
-
-        // Move n1 up until it reaches the same level as n2
-        while (diff-- != 0)
-            n1 = n1.parent;
-
-        while (n1 != null && n2 != null) {
-            if (n1 == n2)
-                return n1;
-            n1 = n1.parent;
-            n2 = n2.parent;
-        }
-
-        return null;
-    }
-
+    // for testing
+//    public static void main(String[] args) 
+//    { 
+//        LCA tree = new LCA(); 
+//        tree.root = new Node(1); 
+//        tree.root.left = new Node(2); 
+//        tree.root.right = new Node(3); 
+//        tree.root.left.left = new Node(4); 
+//        tree.root.left.right = new Node(5); 
+//        tree.root.right.left = new Node(6); 
+//        tree.root.right.right = new Node(7); 
+//  
+//        System.out.println("LCA(4, 5): " + tree.findLCA(4,5)); 
+//        System.out.println("LCA(4, 6): " + tree.findLCA(4,6)); 
+//        System.out.println("LCA(3, 4): " + tree.findLCA(3,4)); 
+//        System.out.println("LCA(2, 4): " + tree.findLCA(2,4)); 
+//      
+//    } \
     
-    public static void main(String[] args)
-    {
-        LCA tree = new LCA();
-        tree.root = tree.insert(tree.root, 20);
-        tree.root = tree.insert(tree.root, 8);
-        tree.root = tree.insert(tree.root, 22);
-        tree.root = tree.insert(tree.root, 4);
-        tree.root = tree.insert(tree.root, 12);
-        tree.root = tree.insert(tree.root, 10);
-        tree.root = tree.insert(tree.root, 14);
-
-        tree.n1 = tree.root.left.right.left;
-        tree.n2 = tree.root.right;
-        tree.lca = tree.LCA(tree.n1, tree.n2);
-
-        System.out.println("LCA of " + tree.n1.key + " and " + tree.n2.key
-                + " is " + tree.lca.key);
-    }
-}
-
+} 
