@@ -91,10 +91,10 @@ public class LCA
 //        tree.root.right.left = new Node(6); 
 //        tree.root.right.right = new Node(7); 
 //  
-//        System.out.println("LCA(4, 5): " + tree.findLCA(4,5)); 
-//        System.out.println("LCA(4, 6): " + tree.findLCA(4,6)); 
-//        System.out.println("LCA(3, 4): " + tree.findLCA(3,4)); 
-//        System.out.println("LCA(2, 4): " + tree.findLCA(2,4)); 
+//        System.out.println("LCA(4, 5): " + tree.getTheLCA(4,5)); 
+//        System.out.println("LCA(4, 6): " + tree.getTheLCA(4,6)); 
+//        System.out.println("LCA(3, 4): " + tree.getTheLCA(3,4)); 
+//        System.out.println("LCA(2, 4): " + tree.getTheLCA(2,4)); 
 //      
 //    } \
     
