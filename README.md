@@ -22,3 +22,4 @@ add the first test java unit
 
 # 2019.9.29
 add the LCA N1 test and only left or right side situation test
+add the standard tree test
