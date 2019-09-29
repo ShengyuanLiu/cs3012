@@ -22,7 +22,17 @@ public class LCATest {
 	@Test
 	public void testEmpty() {
 		LCA tree = new LCA();
-		assertEquals("LCA¡¡Can't search empty tree", -1, tree.getTheLCA(2, 3));
+		assertEquals("LCA¡¡can't search empty tree", -1, tree.getTheLCA(2, 3));
 	}
+	
+	@Test
+	public void test1SideTree ()
+	{
+		LCA tree = new LCA();
+		tree.root = new Node (5);
+		assertEquals("LCA can't search one side tree", -1, tree.getTheLCA(5, 3));
+	}
+	
+	
 
 }
