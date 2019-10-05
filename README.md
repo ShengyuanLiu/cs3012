@@ -20,6 +20,14 @@ add the method java
 add the first test java unit
 
 
+
+
 # 2019.9.29
 add the LCA N1 test and only left or right side situation test
 add the standard tree test
+
+
+
+
+# 2019.10.5
+add the only one left side or right side tree test

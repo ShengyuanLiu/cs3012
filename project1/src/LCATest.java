@@ -99,4 +99,74 @@ public class LCATest {
 		assertEquals("Find LCA of non-existent node",tree.getTheLCA(8,7),-1);
 	}
 
+	//          ---------
+	//             tree:
+	//               1
+	//              / \
+	//             2   3
+	//            / \  
+	//           4   5
+	//          / \
+	//         6   7
+	
+	
+	@Test 
+	public void testLeftSideTree ()
+	{
+        LCA tree = new LCA(); 
+        tree.root = new Node(1); 
+        tree.root.left = new Node(2); 
+        tree.root.right = new Node(3); 
+        tree.root.left.left = new Node(4); 
+        tree.root.left.right = new Node(5); 
+        tree.root.left.left.left = new Node(6);
+        tree.root.left.left.right = new Node(7);
+  
+        assertEquals("Find LCA(4,5). Should return 2.",tree.getTheLCA(4,5),2);
+		assertEquals("Find LCA(4,6). Should return 4.",tree.getTheLCA(4,6),4);
+		assertEquals("Find LCA(2,7). Should return 2.",tree.getTheLCA(2,7),2);
+		assertEquals("Find LCA(3,4). Should return 1.",tree.getTheLCA(3,4),1);
+		assertEquals("Find LCA(2,4). Should return 2.",tree.getTheLCA(2,4),2);
+		assertEquals("Find LCA(6,3). Should return 1.",tree.getTheLCA(6,3),1);
+		assertEquals("Find LCA(7,5). Should return 2.",tree.getTheLCA(2,4),2);
+		assertEquals("Find LCA of non-existent node",tree.getTheLCA(8,7),-1);
+	}
+	
+	
+	//          ---------
+	//             tree:
+	//               1
+	//              / \
+	//             2   3
+	//            /   / \
+	//           4   6   7
+    //              / \   \
+	//             8   9  10
+	@Test
+	public void testRightSideTree ()
+	{
+        LCA tree = new LCA(); 
+        tree.root = new Node(1); 
+        tree.root.left = new Node(2); 
+        tree.root.right = new Node(3); 
+        tree.root.left.left = new Node(4); 
+        tree.root.right.left = new Node(6); 
+        tree.root.right.right = new Node(7); 
+        tree.root.right.left.left = new Node(8);
+        tree.root.right.left.right = new Node(9);
+        tree.root.right.right.right = new Node(10);
+  
+		assertEquals("Find LCA(4,6). Should return 1.",tree.getTheLCA(4,6),1);
+		assertEquals("Find LCA(2,7). Should return 1.",tree.getTheLCA(2,7),1);
+		assertEquals("Find LCA(3,4). Should return 1.",tree.getTheLCA(3,4),1);
+		assertEquals("Find LCA(2,4). Should return 2.",tree.getTheLCA(2,4),2);
+		assertEquals("Find LCA(4.8). Should return 1.",tree.getTheLCA(4,8),1);
+		assertEquals("Find LCA(9,7). Should return 3.",tree.getTheLCA(9,7),3);
+		assertEquals("Find LCA(3,10). Should return 3.",tree.getTheLCA(3,10),3);
+		assertEquals("Find LCA of non-existent node",tree.getTheLCA(11,12),-1);
+	}
+
+    
+	
+
 }
