@@ -1,6 +1,9 @@
 import java.util.ArrayList; 
 import java.util.List; 
-  
+
+
+//author:Shengyuan Liu
+//the java code solution for the  Lowest Common Ancestor in a binary tree.
 // A Binary Tree node 
 class Node 
 { 
@@ -79,23 +82,5 @@ public class LCA
         return false; 
     } 
 
-    // for testing
-//    public static void main(String[] args) 
-//    { 
-//        LCA tree = new LCA(); 
-//        tree.root = new Node(1); 
-//        tree.root.left = new Node(2); 
-//        tree.root.right = new Node(3); 
-//        tree.root.left.left = new Node(4); 
-//        tree.root.left.right = new Node(5); 
-//        tree.root.right.left = new Node(6); 
-//        tree.root.right.right = new Node(7); 
-//  
-//        System.out.println("LCA(4, 5): " + tree.getTheLCA(4,5)); 
-//        System.out.println("LCA(4, 6): " + tree.getTheLCA(4,6)); 
-//        System.out.println("LCA(3, 4): " + tree.getTheLCA(3,4)); 
-//        System.out.println("LCA(2, 4): " + tree.getTheLCA(2,4)); 
-//      
-//    } \
     
 } 

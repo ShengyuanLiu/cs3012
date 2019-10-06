@@ -30,4 +30,10 @@ add the standard tree test
 
 
 # 2019.10.5
-add the only one left side or right side tree test
+add the only one left side root tree and only one right side
+root tree situation test
+
+
+# 2019.10.6
+add the one left root tree or one right root tree situation
+for the LCA code test 

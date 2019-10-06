@@ -9,17 +9,21 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-
+//author: Shengyuan Liu, Student Number: 16341982
+//lius8@tcd.ie
+// the LCA¡¡java code test
+// using the JUnit4 mode
 @RunWith(JUnit4.class)
 public class LCATest {
     
-	
+	//add the 
 	@Test
 	public void testConstructor()
 	{
 	       new LCA();
 	}
 	
+	// the binary tree's shape:
 	//  --------
 	//   empty tree
 	@Test
@@ -29,6 +33,7 @@ public class LCATest {
 	}
 	
 	
+	// the binary tree's shape:
 	//    ------
 	//     tree:
 	//      5
@@ -41,6 +46,7 @@ public class LCATest {
 		assertEquals("LCA can't search one side tree", -1, tree.getTheLCA(5, 3));
 	}
 	
+	// the binary tree's shape:
 	//         ------
 	//          tree:
 	//           1
@@ -56,6 +62,7 @@ public class LCATest {
 		assertEquals("LCA of the(1,2) is", 1, tree.getTheLCA(1, 2));
 	}
 	
+	// the binary tree's shape:
 	//        -------
 	//          tree:
 	//           2
@@ -71,6 +78,7 @@ public class LCATest {
 		assertEquals("LCA of the(2,5) is", 2, tree.getTheLCA(2, 5));
 	}
 	
+	// the binary tree's shape:
 	//          ---------
 	//             tree:
 	//               1
@@ -99,6 +107,7 @@ public class LCATest {
 		assertEquals("Find LCA of non-existent node",tree.getTheLCA(8,7),-1);
 	}
 
+	// the binary tree's shape:
 	//          ---------
 	//             tree:
 	//               1
@@ -132,7 +141,7 @@ public class LCATest {
 		assertEquals("Find LCA of non-existent node",tree.getTheLCA(8,7),-1);
 	}
 	
-	
+	// the binary tree's shape:
 	//          ---------
 	//             tree:
 	//               1
@@ -142,6 +151,7 @@ public class LCATest {
 	//           4   6   7
     //              / \   \
 	//             8   9  10
+	
 	@Test
 	public void testRightSideTree ()
 	{
@@ -166,7 +176,64 @@ public class LCATest {
 		assertEquals("Find LCA of non-existent node",tree.getTheLCA(11,12),-1);
 	}
 
-    
+	// the binary tree's shape:
+	//          ---------
+	//             tree:
+	//               1
+	//              / 
+	//             2   
+	//            /
+	//           3
+    //          /
+	//         4    
+	//        /
+	//       5
+	
+	@Test
+	public void testOnlyLeftTree ()
+	{
+		LCA tree = new LCA(); 
+        tree.root = new Node(1); 
+        tree.root.left = new Node(2); 
+        tree.root.left.left =new Node(3);
+        tree.root.left.left.left = new Node(4);
+        tree.root.left.left.left.left =new Node(5);
+        
+        assertEquals("Find LCA(1,2). Should return 1.",tree.getTheLCA(1,2),1);
+        assertEquals("Find LCA(2,3). Should return 2.",tree.getTheLCA(2,3),2);
+        assertEquals("Find LCA(3,5). Should return 3.",tree.getTheLCA(3,5),3);
+    	assertEquals("Find LCA of non-existent node",tree.getTheLCA(11,12),-1);
+	}
+	
+	
+	//          ---------
+	//             tree:
+	//               1
+	//                \
+	//                 2
+	//                  \
+	//                   3
+    //                    \
+	//                     4
+	//                      \
+	//                       5
+	
+	@Test
+	public void testOnlyRightTree ()
+	{
+		LCA tree = new LCA(); 
+        tree.root = new Node(1); 
+        tree.root.right = new Node(2); 
+        tree.root.right.right =new Node(3);
+        tree.root.right.right.right = new Node(4);
+        tree.root.right.right.right.right =new Node(5);
+        
+        assertEquals("Find LCA(1,2). Should return 1.",tree.getTheLCA(1,2),1);
+        assertEquals("Find LCA(2,3). Should return 2.",tree.getTheLCA(2,3),2);
+        assertEquals("Find LCA(2,4). Should return 2.",tree.getTheLCA(2,4),2);
+    	assertEquals("Find LCA of non-existent node",tree.getTheLCA(11,12),-1);
+	}
+	
 	
 
 }
