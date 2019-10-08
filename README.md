@@ -37,3 +37,6 @@ root tree situation test
 # 2019.10.6
 add the one left root tree or one right root tree situation
 for the LCA code test 
+
+# 2019.10.8
+branch the exist solution and try to solve the DAG in LCA
