@@ -1,86 +1,74 @@
-import java.util.ArrayList; 
-import java.util.List; 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Stack;
 
 
 //author:Shengyuan Liu
 //the java code solution for the  Lowest Common Ancestor in a binary tree.
 // A Binary Tree node 
-class Node 
-{ 
-    int data; 
-    Node left, right; 
-  
-    Node(int value) 
-    { 
-        data = value; 
-        left = right = null; 
-    } 
-} 
-// Lowest Common Ancestor  
-public class LCAForDGA  
-{ 
-  
-    Node root; 
-    private List<Integer> path1 = new ArrayList<>(); 
-    private List<Integer> path2 = new ArrayList<>(); 
-  
-    // Finds the path from root node to given root of the tree. 
-    int getTheLCA(int node1, int node2) 
-    { 
-        path1.clear(); 
-        path2.clear(); 
-        return searchLCAInternal(root, node1, node2); 
-    } 
-  
-    private int searchLCAInternal(Node root, int node1, int node2) 
-    { 
-  
-        if (!getPath(root, node1, path1) || !getPath(root, node2, path2)) 
-        { 
-            System.out.println((path1.size() > 0) ? "node1 is present" : "node1 is missing"); 
-            System.out.println((path2.size() > 0) ? "node2 is present" : "node2 is missing"); 
-            return -1; 
-        } 
-  
-        int i; 
-        for (i = 0; i < path1.size() && i < path2.size(); i++) 
-        {       
-        // System.out.println(path1.get(i) + " " + path2.get(i)); 
-            if (!path1.get(i).equals(path2.get(i))) 
-                break; 
-        } 
-  
-        return path1.get(i-1); 
-    } 
-      
-    // Finds the path from root node to given root of the tree, Stores the 
-    // path in a vector path[], returns true if path exists otherwise false 
-    private boolean getPath(Node root, int n, List<Integer> path) 
-    { 
-        // base case 
-        if (root == null) 
-            return false; 
-         
-          
-        // Store this node . The node will be removed if 
-        // not in path from root to n. 
-        path.add(root.data); 
-  
-        if (root.data == n)  
-            return true;  
-  
-        if (root.left != null && getPath(root.left, n, path)) 
-            return true; 
-  
-        if (root.right != null && getPath(root.right, n, path)) 
-            return true;          
-  
-        // If not present in subtree rooted with root, remove root from 
-        // path[] and return false 
-        path.remove(path.size()-1); 
-  
-        return false; 
-    } 
+public class LCAForDGA<V> {
 
-    
-} 
+    private Map<V,List<V>> map = new HashMap<V,List<V>>();
+
+    //Add a vertex to the graph.  Nothing happens if vertex is already in graph.
+    public void add(V vertex) {
+        if (map.containsKey(vertex)) return;
+        map.put(vertex, new ArrayList<V>());
+    }
+
+    //check if the vertex is already in graph
+    public boolean contains (V vertex) {
+        return map.containsKey(vertex);
+    }
+
+    //Add an edge to the graph
+    public void add(V from, V to) {
+        if(from != to) {
+        	this.add(from); 
+        	this.add(to);
+        	map.get(from).add(to);
+        }
+    }
+
+    //crate report(as a Map) the in-degree of each vertex.
+    public Map<V,Integer> inDegree () {
+        Map<V,Integer> result = new HashMap<V,Integer>();
+        for (V v: map.keySet()) result.put(v, 0);       // All in-degrees are 0
+        for (V from: map.keySet()) {
+            for (V to: map.get(from)) {
+                result.put(to, result.get(to) + 1);           // Increment in-degree
+            }
+        }
+        return result;
+    }
+
+    //create report(as a List) the topological sort of the vertices; null for no such sort.
+    public List<V> topSort () {
+        Map<V, Integer> degree = inDegree();
+        
+        //Push all the 0 degree vertices to the stack
+        Stack<V> stack = new Stack<V>();       
+        for (V v: degree.keySet()) {
+            if (degree.get(v) == 0) stack.push(v);
+        }
+        
+        // Determine the topological order
+        List<V> result = new ArrayList<V>();
+        while (!stack.isEmpty()) {
+            V v = stack.pop();                  
+            result.add(v);                   // put 0 degree vertics in topol order
+            //deal with other vertices whose degree are not 0
+            for (V neighbor: map.get(v)) {
+                degree.put(neighbor, degree.get(neighbor) - 1);
+                if (degree.get(neighbor) == 0) stack.push(neighbor);
+            }
+        }
+        
+        // Check that we have used the entire graph (if not, there was a cycle)
+        if (result.size() != map.size()) return null;
+        return result;
+    }
+
+}
