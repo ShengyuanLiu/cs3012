@@ -43,3 +43,6 @@ branch the exist solution and try to solve the DAG in LCA
 
 # 2019.10.13
 add the new soultion of DAG in the DAG branch
+
+# 2019.10.15
+add the basic DAG test (not LCA of DAG)
