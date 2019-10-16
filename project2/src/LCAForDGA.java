@@ -70,5 +70,53 @@ public class LCAForDGA<V> {
         if (result.size() != map.size()) return null;
         return result;
     }
+    
+    //check if the graph is a DAG, return false if there is a cycle
+    public boolean isDAG () {
+        return topSort() != null;
+    }
+    
+    
+    
+    
+    public Map parents(V a) {
+    	Map<V, Integer> parent = new HashMap<V, Integer>();
+    	Map<V, Integer> degree = inDegree();
+    	int depth = 0;
+    	
+    	for(V v: map.keySet()) {
+    		//find the root, a root is a vertex whose indegree is 0
+    		if(degree.get(v) == 0) {
+    			parent.put(v, 0);
+    			getParent(v, parent, a, depth);
+    		}
+    	}
+    	return parent;
+    }
+    
+    private V getParent(V root, Map<V, Integer> parent, V a, int depth) {
+    	V vertic = null;
+    	if(root == null) return null;
+    	if(root.equals(a)) {
+    		parent.put(root, depth);
+    		return root;
+    	}
+    	List<V> child = new ArrayList<V>();
+    	for(int i = 0; i<map.get(root).size(); i++) {
+    		child.add(null);
+    	}
+    	for(int i = 0; i<map.get(root).size();i++) {
+    		child.set(i, getParent(map.get(root).get(i),parent,a,depth+1));
+    	}
+    	for(int i=0; i<map.get(root).size(); i++) {
+    		if(child.get(i) != null) {
+    			//if(!parent.containsKey(root)) {
+    			parent.put(root, depth);
+    			return getParent(map.get(root).get(i),parent,a,depth+1);
+    			//}
+    		}
+    	}
+    	return vertic;
+    }
 
 }
