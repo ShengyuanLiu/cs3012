@@ -141,7 +141,7 @@ public class LCAForDGATest {
 	}
 	
 	
-	// test the map if it is DAG¡¡or not
+	// test the map if it is DAG or not
 	@Test
 	public void testIsDAG() {
 		assertTrue(theGraph.isDAG());
@@ -155,7 +155,7 @@ public class LCAForDGATest {
 	}
 	
 	
-	// main test for the LCA¡¡of DAG graph
+	// main test for the LCA of DAG graph
 	@Test
 	public void testLca() {
 		
