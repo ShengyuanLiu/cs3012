@@ -6,8 +6,8 @@ import java.util.Stack;
 
 
 //author:Shengyuan Liu
-//the java code solution for the  Lowest Common Ancestor in a binary tree.
-// A Binary Tree node 
+//the java code solution for the  Lowest Common Ancestor in a directed acylic graphs .
+// A DAG node 
 public class LCAForDGA<V> {
 
     private Map<V,List<V>> map = new HashMap<V,List<V>>();
@@ -124,7 +124,7 @@ public class LCAForDGA<V> {
     }
     
      //find the LCA 
-    public List<V> lca(V x, V y) {
+    public List<V> getLCA(V x, V y) {
     	List<V> theLCA = new ArrayList<V>();
     	int depth = 0;
     	Map<V, Integer> parentA = parents(x);

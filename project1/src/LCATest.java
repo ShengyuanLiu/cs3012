@@ -12,7 +12,7 @@ import org.junit.runners.JUnit4;
 //author: Shengyuan Liu, Student Number: 16341982
 //lius8@tcd.ie
 // the LCA¡¡java code test
-// using the JUnit4 mode\
+// using the JUnit4 mode
 // the test code will test some basic tree mode in the first and add some
 // odd test after the basic test succeed and above each test tree I will
 // draw the shape of the binary tree
