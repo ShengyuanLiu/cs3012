@@ -18,6 +18,10 @@ public class LCAForDGA<V> {
         map.put(vertex, new ArrayList<V>());
     }
 
+    public Map<V,List<V>> getMap() {
+		return map;
+	}
+    
     //check if the vertex is already in graph
     public boolean contains (V vertex) {
         return map.containsKey(vertex);
@@ -32,8 +36,8 @@ public class LCAForDGA<V> {
         }
     }
 
-    //crate report(as a Map) the in-degree of each vertex.
-    public Map<V,Integer> inDegree () {
+    //crate report(as a Map) the depth of each vertex.
+    public Map<V,Integer> theDepth () {
         Map<V,Integer> result = new HashMap<V,Integer>();
         for (V v: map.keySet()) result.put(v, 0);       // All in-degrees are 0
         for (V from: map.keySet()) {
@@ -46,7 +50,7 @@ public class LCAForDGA<V> {
 
     //create report(as a List) the topological sort of the vertices; null for no such sort.
     public List<V> topSort () {
-        Map<V, Integer> degree = inDegree();
+        Map<V, Integer> degree = theDepth();
         
         //Push all the 0 degree vertices to the stack
         Stack<V> stack = new Stack<V>();       
@@ -81,7 +85,7 @@ public class LCAForDGA<V> {
     
     public Map parents(V a) {
     	Map<V, Integer> parent = new HashMap<V, Integer>();
-    	Map<V, Integer> degree = inDegree();
+    	Map<V, Integer> degree = theDepth();
     	int depth = 0;
     	
     	for(V v: map.keySet()) {
@@ -117,6 +121,31 @@ public class LCAForDGA<V> {
     		}
     	}
     	return vertic;
+    }
+    
+     //find the LCA 
+    public List<V> lca(V x, V y) {
+    	List<V> theLCA = new ArrayList<V>();
+    	int depth = 0;
+    	Map<V, Integer> parentA = parents(x);
+    	Map<V, Integer> parentB = parents(y);
+    	
+    	//compare the parents of the two nodes
+    	for(V va: parentA.keySet()) {
+    		for(V vb: parentB.keySet()) {
+    			
+    			//if there are same nodes in both maps, choose the deepest one and add the parents to the LCA list
+    			// the number of LCA could be 1 or more
+    			if(va.equals(vb) && depth <= parentA.get(va)) {
+    				if(depth < parentA.get(va)) {
+    					theLCA.clear();
+    				}
+    				theLCA.add(va);
+    				depth = parentA.get(va);
+    			}
+    		}
+    	}
+    	return theLCA;
     }
 
 }
