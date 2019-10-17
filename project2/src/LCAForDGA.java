@@ -124,7 +124,7 @@ public class LCAForDGA<V> {
     }
     
      //find the LCA 
-    public List<V> lca(V x, V y) {
+    public List<V> getLCA(V x, V y) {
     	List<V> theLCA = new ArrayList<V>();
     	int depth = 0;
     	Map<V, Integer> parentA = parents(x);
