@@ -62,6 +62,11 @@ public class LCAForDGATest {
 		theGraph.add(1,10);
 		
 		
+		
+		
+		
+		
+		
 		// the binary tree's shape:
 		//          ---------
 		//             tree:
@@ -105,6 +110,11 @@ public class LCAForDGATest {
 		
 	}
 	
+	
+	
+	
+	
+	
 	// test the depth function
 	@Test
 	public void testTheDepth() {
@@ -124,7 +134,6 @@ public class LCAForDGATest {
 		result.put(12, 1);
 		result.put(13, 2);
 		result.put(14, 2);
-		 
 		assertNotNull(theGraph.theDepth());
 		assertNotNull(result);
 		assertEquals(theGraph.theDepth(),result);
@@ -138,6 +147,11 @@ public class LCAForDGATest {
 		assertTrue(theGraph.isDAG());
 		theGraph.add(14,8);
 		assertEquals(false,theGraph.isDAG());
+		
+		assertTrue(theTree.isDAG());
+		theTree.add(9,6);
+		assertEquals(false,theTree.isDAG());
+		
 	}
 	
 	
@@ -150,40 +164,25 @@ public class LCAForDGATest {
 		List<Integer> expectedResult = new ArrayList<Integer>();
 		//create the Result to store the Result
 		List theResult;
-		
 		expectedResult.add(1);
 		theResult=theGraph.getLCA(7, 10);
 		assertEquals(theResult,expectedResult);
-		
-		
-		// clean the expected value and test the next
 		expectedResult.clear();
 		expectedResult.add(2);
 		theResult=theGraph.getLCA(12, 5);
 		assertEquals(theResult,expectedResult);
-		
-		// clean the expected value and test the next
 		expectedResult.clear();
 		expectedResult.add(8);
 		theResult=theGraph.getLCA(11, 8);
 		assertEquals(theResult,expectedResult);
-		
-		// clean the expected value and test the next
 		expectedResult.clear();
 		expectedResult.add(1);
 		theResult=theGraph.getLCA(9, 4);
 		assertEquals(theResult,expectedResult);
-		
-
-		
-		// clean the expected value and test the next
 		expectedResult.clear();
 		expectedResult.add(12);
 		theResult=theGraph.getLCA(12,11);
 		assertEquals(theResult,expectedResult);
-		
-
-		// clean the expected value and test the next
 		expectedResult.clear();
 		expectedResult.add(8);
 		theResult=theGraph.getLCA(14, 13);
@@ -192,27 +191,27 @@ public class LCAForDGATest {
 		//test add node 15, points to 2 and 4
 		theGraph.add(15,2);
 		theGraph.add(15,4);
-		
 		expectedResult.clear();
 		expectedResult.add(1);
 		expectedResult.add(15);
-		
 		// test the graph is DAG or not
 		assertTrue(theGraph.isDAG()); 
 		theResult=theGraph.getLCA(2, 4);
 		assertEquals(theResult,expectedResult);
-		
-		//test add vertex 15, points to 14
 		theGraph.add(16,15);
-		
 		expectedResult.clear();
 		expectedResult.add(15);
-		
 		// test the graph is DAG or not
 		assertTrue(theGraph.isDAG()); 
-		
 		theResult=theGraph.getLCA(2, 4);
 		assertEquals(theResult,expectedResult);
+		
+		
+		
+		
+		
+		
+		
 		
 		// there are two new nodes add into the DAG graph so just repeat the test to test if there
 		// is no change curse the program choose the 15 to be the lowest common ancestor
@@ -220,29 +219,19 @@ public class LCAForDGATest {
 		//repeat test 
 		expectedResult.clear();
 		expectedResult.add(2);
-		
 		theResult=theGraph.getLCA(3, 5);
 		assertEquals(theResult,expectedResult);
-		
-		//repeat test
 		expectedResult.clear();
 		expectedResult.add(3);
-		
 		theResult=theGraph.getLCA(3, 7);
 		assertEquals(theResult,expectedResult);
-		
-		//repeat test
 		expectedResult.clear();
 		expectedResult.add(8);
-		
 		theResult=theGraph.getLCA(10,11);
 		assertEquals(theResult,expectedResult);
-		
-		//repeat test
 		expectedResult.clear();
 		expectedResult.add(8);// the result is not 4 because the 4 is not the deepest node of the parents of
-		//these two nodes 
-		
+		                      //these two nodes 
 		theResult=theGraph.getLCA(13, 14);
 		assertEquals(theResult,expectedResult); 
 		
@@ -252,19 +241,21 @@ public class LCAForDGATest {
 		
 		
 		
-		        // test for the binary tree
-		        values.add(1);
-				assertEquals("Find LCA(4,6). Should return 1.",values,theTree.getLCA(4,6));
-				assertEquals("Find LCA(2,7). Should return 1.",values,theTree.getLCA(2,7));
-				assertEquals("Find LCA(3,4). Should return 1.",values,theTree.getLCA(3,4));
-				assertEquals("Find LCA(4.8). Should return 1.",values,theTree.getLCA(4,8));
-				values.clear();
-				values.add(2);
-				assertEquals("Find LCA(2,4). Should return 2.",values,theTree.getLCA(2,4));
-				values.clear();
-				values.add(3);
-				assertEquals("Find LCA(9,7). Should return 3.",values,theTree.getLCA(9,7));
-				assertEquals("Find LCA(3,10). Should return 3.",values,theTree.getLCA(3,10));
+		
+		// test for the binary tree
+        values.add(1);
+		assertEquals("Find LCA(4,6). Should return 1.",values,theTree.getLCA(4,6));
+		assertEquals("Find LCA(2,7). Should return 1.",values,theTree.getLCA(2,7));
+		assertEquals("Find LCA(3,4). Should return 1.",values,theTree.getLCA(3,4));
+		assertEquals("Find LCA(4.8). Should return 1.",values,theTree.getLCA(4,8));
+		values.clear();
+		values.add(2);
+		assertEquals("Find LCA(2,4). Should return 2.",values,theTree.getLCA(2,4));
+		values.clear();
+		values.add(3);
+		assertEquals("Find LCA(9,7). Should return 3.",values,theTree.getLCA(9,7));
+		assertEquals("Find LCA(3,10). Should return 3.",values,theTree.getLCA(3,10));
+		
 
 		
 	}
