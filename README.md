@@ -51,3 +51,19 @@ add the basic DAG test (not LCA of DAG)
 add the LCA mothod function and add the LCA of DAG test
 all work done
 
+
+--------------
+Annotation£º about this project work , i divide it into two parts and 
+one of it is the LCA for the binary tree and another one is the LCA of
+the DAG graph
+So in the beginning of the work i choose the different algorithm for these 
+two problems and create two clients in the github to avoid the unnecessary 
+conflict and merge the DAG branch into the master branch in the end
+
+The project 1 is using to build the method of the LCA of binary tree and test it.
+And the project 2 is using to bulid the method of the LCA of DAG and test it.
+Just in case, i also add the binary test into the DAG test file to show that the DAG 
+method applies equally to the binary tree test.
+
+And the test are also different with each other. 
+Hope the teacher can understand my original intention of the two clients
