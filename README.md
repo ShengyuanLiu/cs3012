@@ -46,3 +46,8 @@ add the new soultion of DAG in the DAG branch
 
 # 2019.10.15
 add the basic DAG test (not LCA of DAG)
+
+# 2019.10.17 
+add the LCA mothod function and add the LCA of DAG test
+all work done
+
